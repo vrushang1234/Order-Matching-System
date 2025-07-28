@@ -42,6 +42,24 @@ void OrderTree::addOrder(Order order){
   }
 }
 
+void OrderTree::searchOrder(Order order){
+  Node *curr = &head;
+  while(curr != nullptr){
+    if(curr->order.orderPrice == order.orderPrice){
+      std::cout << "Order Found" << std::endl;
+      return;
+    }
+    else if(curr->order.orderPrice <= order.orderPrice){
+      curr = curr->right;
+    }
+    else{
+      curr = curr->left;
+    }
+  }
+  std::cout << "Order Not Found" << std::endl;
+  return;
+}
+
 void OrderTree::showOrders(Node curr){
   if(curr.left || curr.right){
     if(curr.left){

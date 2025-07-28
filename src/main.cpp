@@ -27,9 +27,16 @@ for (const auto& order : orders) {
     }
 }
 
+Order findOrder = {10,11,50, BUY};
+Order findOrder2 = {11,12,50,SELL};
+
   std::cout << "Buy Orders:" << std::endl; 
   buyOrders.showOrders(buyOrders.head);
   std::cout << "Sell Orders:" << std::endl;
   sellOrders.showOrders(sellOrders.head);
+
+  std::cout<< "Finding order: "<< std::endl;
+  sellOrders.searchOrder(findOrder);
+  buyOrders.searchOrder(findOrder2);
 
 }

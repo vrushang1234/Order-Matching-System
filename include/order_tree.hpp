@@ -14,8 +14,8 @@ struct OrderTree{
     Node head;
     void showOrders(Node);
     void addOrder(Order);
+    void searchOrder(Order);
   private:
     void removeOrder();
-    void searchOrder();
 };
 

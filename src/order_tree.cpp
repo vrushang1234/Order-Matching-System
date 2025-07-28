@@ -1,4 +1,5 @@
 #include "../include/order_tree.hpp"
+#include <iostream>
 
 Node::Node(){
   left = nullptr;
@@ -39,4 +40,16 @@ void OrderTree::addOrder(Order order){
       }
     } 
   }
+}
+
+void OrderTree::showOrders(Node curr){
+  if(curr.left || curr.right){
+    if(curr.left){
+      showOrders(*curr.left);
+    }
+    if(curr.right){
+      showOrders(*curr.right);
+    }
+  }
+  std::cout << "Order ID: " << curr.order.orderID << " Order Price: " << curr.order.orderPrice << std::endl; 
 }

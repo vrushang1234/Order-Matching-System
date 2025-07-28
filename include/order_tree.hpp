@@ -12,6 +12,7 @@ struct OrderTree{
     OrderTree();
     int size = 0;
     Node head;
+    void showOrders(Node);
     void addOrder(Order);
   private:
     void removeOrder();

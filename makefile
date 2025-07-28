@@ -1,24 +1,31 @@
-# Makefile
+# Compiler and flags
+CXX := g++
+CXXFLAGS := -std=c++17 -Wall -Iinclude
 
-# Compiler
-CXX = g++
-# Compiler flags
-CXXFLAGS = -Wall -Wextra -std=c++17
-# Target executable name
-TARGET = main
+# Source and build directories
+SRC_DIR := src
+OBJ_DIR := build
+BIN := order-matcher
+
 # Source files
-SRC = main.cpp
-# Object files
-OBJ = $(SRC:.cpp=.o)
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 
-# Default rule
-all: $(TARGET)
+# Default target
+all: $(BIN)
 
-# Rule to build the target
-$(TARGET): $(OBJ)
+# Build the final executable
+$(BIN): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Rule to clean up build files
+# Compile source files to object files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Clean build files
 clean:
-	rm -f $(TARGET) $(OBJ)
+	rm -rf $(OBJ_DIR) $(BIN)
+
+.PHONY: all clean
 
